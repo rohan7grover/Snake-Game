@@ -62,6 +62,7 @@ void init() {
             if (food.x == hurdle[i].x && food.y == hurdle[i].y) {
                 food = {rand() % (WIDTH / TILE_SIZE) * TILE_SIZE, rand() % (HEIGHT / TILE_SIZE) * TILE_SIZE};
                 f=true;
+                break;
             }
         }
         if(f==false){
@@ -145,6 +146,7 @@ void update(int value) {
             if (food.x == hurdle[i].x && food.y == hurdle[i].y) {
                 food = {rand() % (WIDTH / TILE_SIZE) * TILE_SIZE, rand() % (HEIGHT / TILE_SIZE) * TILE_SIZE};
                 f=true;
+                break;
             }
         }
         if(f==false){
