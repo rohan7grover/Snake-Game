@@ -54,7 +54,7 @@ void init()
         hurdle[hurdleLength + i] = {WIDTH / 4 + i * TILE_SIZE, HEIGHT / 4};
         hurdleLength++;
     }
-    
+
     for (int i = 0; i < 30; i++)
     {
         hurdle[hurdleLength + i] = {WIDTH / 4 + i * TILE_SIZE, 3 * HEIGHT / 4};
@@ -87,14 +87,6 @@ void init()
 void render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    int score_temp = score, score_temp2, pos = 1;
-    while (score_temp > 0)
-    {
-        score_temp2 = score_temp % 10;
-        score_temp = score_temp / 10;
-        plot(score_temp2, pos);
-        pos++;
-    }
     glColor3f(1.0, 1.0, 1.0);                          // set color to white
     glRasterPos2f(WIDTH / 2 - 20, HEIGHT - 20);        // set the position to the top center of the screen
     std::string s = "Score: " + std::to_string(score); // create a string with the score
