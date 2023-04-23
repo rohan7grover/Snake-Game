@@ -34,10 +34,10 @@ void init()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
-    
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    
+
     snakeLength = 3;
     direction = 1;
     score = 0;
@@ -55,26 +55,25 @@ void init()
     hurdle[9] = {0, HEIGHT - TILE_SIZE};
     hurdle[10] = {TILE_SIZE, HEIGHT - TILE_SIZE};
     hurdle[11] = {0, HEIGHT - TILE_SIZE - TILE_SIZE};
-    hurdle[12] = {0, 2*TILE_SIZE};
-    hurdle[13] = {0, 3*TILE_SIZE};
-    hurdle[14] = {2*TILE_SIZE,0};
-    hurdle[15] = {3*TILE_SIZE,0};
+    hurdle[12] = {0, 2 * TILE_SIZE};
+    hurdle[13] = {0, 3 * TILE_SIZE};
+    hurdle[14] = {2 * TILE_SIZE, 0};
+    hurdle[15] = {3 * TILE_SIZE, 0};
 
-    hurdle[16] = {WIDTH -3* TILE_SIZE, 0};
-    hurdle[17] = {WIDTH -4* TILE_SIZE, 0};
-    hurdle[18] = {WIDTH - TILE_SIZE, 2*TILE_SIZE};
-    hurdle[19] = {WIDTH - TILE_SIZE, 3*TILE_SIZE};
+    hurdle[16] = {WIDTH - 3 * TILE_SIZE, 0};
+    hurdle[17] = {WIDTH - 4 * TILE_SIZE, 0};
+    hurdle[18] = {WIDTH - TILE_SIZE, 2 * TILE_SIZE};
+    hurdle[19] = {WIDTH - TILE_SIZE, 3 * TILE_SIZE};
 
-    hurdle[20] = {WIDTH - 3*TILE_SIZE, HEIGHT - TILE_SIZE};
-    hurdle[21] = {WIDTH - TILE_SIZE, HEIGHT - 3*TILE_SIZE};
-    hurdle[22] = {WIDTH - 4*TILE_SIZE, HEIGHT - TILE_SIZE};
-    hurdle[23] = {WIDTH - TILE_SIZE, HEIGHT - 4*TILE_SIZE};
+    hurdle[20] = {WIDTH - 3 * TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[21] = {WIDTH - TILE_SIZE, HEIGHT - 3 * TILE_SIZE};
+    hurdle[22] = {WIDTH - 4 * TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[23] = {WIDTH - TILE_SIZE, HEIGHT - 4 * TILE_SIZE};
 
-
-    hurdle[24] = {0, HEIGHT - 3*TILE_SIZE};
-    hurdle[25] = {0, HEIGHT - 4*TILE_SIZE};
-    hurdle[26] = { 2* TILE_SIZE, HEIGHT - TILE_SIZE};
-    hurdle[27] = {3*TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[24] = {0, HEIGHT - 3 * TILE_SIZE};
+    hurdle[25] = {0, HEIGHT - 4 * TILE_SIZE};
+    hurdle[26] = {2 * TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[27] = {3 * TILE_SIZE, HEIGHT - TILE_SIZE};
 
     for (int i = 0; i < 30; i++)
     {
@@ -129,7 +128,7 @@ void render()
     }
 
     // Draw snake
-    glColor3f(0.0, 1.0, 0.0);
+    glColor3f(1.0, 0.5, 0.0);
     for (int i = 0; i < snakeLength; i++)
     {
         glRecti(snake[i].x, snake[i].y, snake[i].x + TILE_SIZE, snake[i].y + TILE_SIZE);
