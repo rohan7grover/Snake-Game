@@ -107,7 +107,7 @@ void init()
     }
 }
 
-void render()
+void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 1.0, 1.0);                          // set color to white
@@ -264,7 +264,7 @@ int main(int argc, char **argv)
 
     init();
 
-    glutDisplayFunc(render);
+    glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
     glutKeyboardUpFunc(keyboardUp); // Handle key release events
     glutTimerFunc(SNAKE_SPEED, update, 0);
