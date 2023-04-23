@@ -35,7 +35,7 @@ void init()
     direction = 1;
     score = 0;
     gameOver = false;
-    hurdleLength = 12;
+    hurdleLength = 28;
     hurdle[0] = {0, 0};
     hurdle[1] = {TILE_SIZE, 0};
     hurdle[2] = {0, TILE_SIZE};
@@ -48,6 +48,26 @@ void init()
     hurdle[9] = {0, HEIGHT - TILE_SIZE};
     hurdle[10] = {TILE_SIZE, HEIGHT - TILE_SIZE};
     hurdle[11] = {0, HEIGHT - TILE_SIZE - TILE_SIZE};
+    hurdle[12] = {0, 2*TILE_SIZE};
+    hurdle[13] = {0, 3*TILE_SIZE};
+    hurdle[14] = {2*TILE_SIZE,0};
+    hurdle[15] = {3*TILE_SIZE,0};
+
+    hurdle[16] = {WIDTH -3* TILE_SIZE, 0};
+    hurdle[17] = {WIDTH -4* TILE_SIZE, 0};
+    hurdle[18] = {WIDTH - TILE_SIZE, 2*TILE_SIZE};
+    hurdle[19] = {WIDTH - TILE_SIZE, 3*TILE_SIZE};
+
+    hurdle[20] = {WIDTH - 3*TILE_SIZE, HEIGHT - TILE_SIZE};
+   hurdle[21] = {WIDTH - TILE_SIZE, HEIGHT - 3*TILE_SIZE};
+    hurdle[22] = {WIDTH - 4*TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[23] = {WIDTH - TILE_SIZE, HEIGHT - 4*TILE_SIZE};
+
+
+    hurdle[24] = {0, HEIGHT - 3*TILE_SIZE};
+    hurdle[25] = {0, HEIGHT - 4*TILE_SIZE};
+    hurdle[26] = { 2* TILE_SIZE, HEIGHT - TILE_SIZE};
+    hurdle[27] = {3*TILE_SIZE, HEIGHT - TILE_SIZE};
 
     for (int i = 0; i < 30; i++)
     {
@@ -192,7 +212,7 @@ void update(int value)
     }
 
     // Self-collision
-    for (int i = 1; i < snakeLength; i++)
+    for (int i = 2; i < snakeLength; i++)
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
