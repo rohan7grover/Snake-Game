@@ -31,6 +31,13 @@ bool gameOver;
 
 void init()
 {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
+    
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
     snakeLength = 3;
     direction = 1;
     score = 0;
@@ -59,7 +66,7 @@ void init()
     hurdle[19] = {WIDTH - TILE_SIZE, 3*TILE_SIZE};
 
     hurdle[20] = {WIDTH - 3*TILE_SIZE, HEIGHT - TILE_SIZE};
-   hurdle[21] = {WIDTH - TILE_SIZE, HEIGHT - 3*TILE_SIZE};
+    hurdle[21] = {WIDTH - TILE_SIZE, HEIGHT - 3*TILE_SIZE};
     hurdle[22] = {WIDTH - 4*TILE_SIZE, HEIGHT - TILE_SIZE};
     hurdle[23] = {WIDTH - TILE_SIZE, HEIGHT - 4*TILE_SIZE};
 
@@ -108,7 +115,7 @@ void render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 1.0, 1.0);                          // set color to white
-    glRasterPos2f(WIDTH / 2 - 20, HEIGHT - 20);        // set the position to the top center of the screen
+    glRasterPos2f(WIDTH / 2 - 50, HEIGHT - 450);       // set the position to the top center of the screen
     std::string s = "Score: " + std::to_string(score); // create a string with the score
     for (unsigned int i = 0; i < s.length(); i++)
     {
@@ -212,7 +219,7 @@ void update(int value)
     }
 
     // Self-collision
-    for (int i = 2; i < snakeLength; i++)
+    for (int i = 1; i < snakeLength; i++)
     {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         {
@@ -251,28 +258,6 @@ void update(int value)
     glutTimerFunc(SNAKE_SPEED, update, 0);
 }
 
-void display()
-{
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    // Set the color to white
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    // Set the raster position to the top-left corner of the screen
-    glRasterPos2f(-1.0f, 1.0f);
-
-    // Convert the score to a string and display it on the screen
-    std::string scoreString = "Score: " + std::to_string(score);
-    for (char c : scoreString)
-    {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
-    }
-}
-
 int main(int argc, char **argv)
 {
     srand(time(NULL));
@@ -288,7 +273,6 @@ int main(int argc, char **argv)
     glutKeyboardUpFunc(keyboardUp); // Handle key release events
     glutTimerFunc(SNAKE_SPEED, update, 0);
 
-    display();
     glutMainLoop();
 
     return 0;
