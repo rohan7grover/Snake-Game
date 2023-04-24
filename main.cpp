@@ -25,7 +25,7 @@ Hurdles hurdle[WIDTH * HEIGHT];
 SnakePart snake[WIDTH * HEIGHT];
 Food food;
 int snakeLength, hurdleLength;
-int direction;
+int direction; //0 - Down, 1 - Right, 2 - Up, 3 - Left
 int score;
 bool gameOver;
 
@@ -34,8 +34,6 @@ void init()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0, WIDTH, HEIGHT, 0, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
     snakeLength = 3;
     direction = 1;
@@ -71,13 +69,11 @@ void init()
     hurdle[25] = {0, HEIGHT - 4 * TILE_SIZE};
     hurdle[26] = {2 * TILE_SIZE, HEIGHT - TILE_SIZE};
     hurdle[27] = {3 * TILE_SIZE, HEIGHT - TILE_SIZE};
-
     for (int i = 0; i < 30; i++)
     {
         hurdle[hurdleLength + i] = {WIDTH / 4 + i * TILE_SIZE, HEIGHT / 4};
         hurdleLength++;
     }
-
     for (int i = 0; i < 30; i++)
     {
         hurdle[hurdleLength + i] = {WIDTH / 4 + i * TILE_SIZE, 3 * HEIGHT / 4};
@@ -88,6 +84,8 @@ void init()
     snake[1] = {WIDTH / 2 - TILE_SIZE, HEIGHT / 2};
     snake[2] = {WIDTH / 2 - 2 * TILE_SIZE, HEIGHT / 2};
     food = {rand() % (WIDTH / TILE_SIZE) * TILE_SIZE, rand() % (HEIGHT / TILE_SIZE) * TILE_SIZE};
+    
+    // ensures that food is not present on any of the hurdles
     bool f = false;
     while (1)
     {
@@ -110,6 +108,8 @@ void init()
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    
+    //Score Board
     glColor3f(1.0, 1.0, 1.0);                          // set color to white
     glRasterPos2f(WIDTH / 2 - 50, HEIGHT - 450);       // set the position to the top center of the screen
     std::string s = "Score: " + std::to_string(score); // create a string with the score
@@ -117,7 +117,6 @@ void display()
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, s[i]); // display the score
     }
-
     if (gameOver)
     {
         std::cout << "Game Over! Final Score: " << score << std::endl;
