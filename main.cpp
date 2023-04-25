@@ -108,15 +108,15 @@ void init()
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    
-    //Score Board
     glColor3f(1.0, 1.0, 1.0);                          // set color to white
     glRasterPos2f(WIDTH / 2 - 50, HEIGHT - 450);       // set the position to the top center of the screen
     std::string s = "Score: " + std::to_string(score); // create a string with the score
-    for (unsigned int i = 0; i < s.length(); i++)
+    
+    for (int i = 0; i < s.length(); i++)
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, s[i]); // display the score
     }
+
     if (gameOver)
     {
         std::cout << "Game Over! Final Score: " << score << std::endl;
@@ -137,8 +137,7 @@ void display()
     // Draw food
     glColor3f(1.0, 0.0, 0.0);
     glRecti(food.x, food.y, food.x + TILE_SIZE, food.y + TILE_SIZE);
-
-    glutSwapBuffers();
+    glutSwapBuffers(); //to prevent flickering when updating the screen content
 }
 
 bool keyStates[256] = {false};
@@ -222,6 +221,7 @@ void update(int value)
             break;
         }
     }
+    
     // hurdle collision
     for (int i = 0; i < hurdleLength; i++)
     {
@@ -231,6 +231,7 @@ void update(int value)
             break;
         }
     }
+    
     // Wall collision
     if (snake[0].x < 0)
     {
@@ -255,7 +256,6 @@ void update(int value)
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(WIDTH, HEIGHT);
@@ -267,8 +267,6 @@ int main(int argc, char **argv)
     glutKeyboardFunc(keyboard);
     glutKeyboardUpFunc(keyboardUp); // Handle key release events
     glutTimerFunc(SNAKE_SPEED, update, 0);
-
     glutMainLoop();
-
     return 0;
 }
